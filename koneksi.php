@@ -1,8 +1,8 @@
 <?php
     $servername = "localhost";
     $database   = "iot";
-    $username   = "root";
-    $password   = "";
+    $username   = "admin";
+    $password   = "123";
 
     $conn = mysqli_connect($servername, $username, $password, $database);
 
