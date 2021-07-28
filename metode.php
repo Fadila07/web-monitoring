@@ -3,6 +3,7 @@
     echo '<span hidden id="refresh"></span>';
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <?php
     // date_default_timezone_set('Asia/Jakarta');
@@ -590,7 +591,7 @@
     }
 
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
 <script type="text/javascript">
 console.log("bb");
