@@ -2,6 +2,7 @@
     echo '<span hidden id="delete"></span>';
     echo '<span hidden id="refresh"></span>';
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
 
 <?php
     // date_default_timezone_set('Asia/Jakarta');
@@ -31,6 +32,8 @@
     $hitung = 0;
 
     include 'koneksi.php';
+
+    echo $hasil;
 
     $query = mysqli_query($conn, "SELECT AVG(temperature) AS temperature, AVG(humidity) AS humidity, AVG(moisture) AS moisture, 
     mac_perangkat FROM monitoring GROUP BY mac_perangkat") or die(mysqli_error());
@@ -587,10 +590,10 @@
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
-const MQTTbroker = '54.226.6.226';
-   client = new Paho.MQTT.Client(MQTTbroker, 9095, "clientsawi");
+const MQTTbroker = '44.195.141.13';
+   client = new Paho.MQTT.Client(MQTTbroker, 9095, "/ws", "clientsawi" + parseInt(Math.random() * 100, 10));
 
   //mqtt connecton options including the mqtt broker subscriptions
   client.connect({
