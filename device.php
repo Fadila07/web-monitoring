@@ -140,8 +140,8 @@ error_reporting(0);
       "responsive": true,
     });
   });
-  const MQTTbroker = '54.226.6.226';
-  var client = new Paho.MQTT.Client(MQTTbroker, 9095, "myclientid_");
+  const MQTTbroker = '44.195.141.13';
+  var client = new Paho.MQTT.Client(MQTTbroker, 9095, "/ws", "myclientid_", + parseInt(Math.random() * 100, 10));
 
   //mqtt connecton options including the mqtt broker subscriptions
   client.connect({
