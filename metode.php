@@ -5,6 +5,95 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+<script type="text/javascript">
+console.log("bb");
+   const MQTTbroker = 'localhost';
+   client = new Paho.MQTT.Client(MQTTbroker, 9095, "/ws", "clientsawi" + parseInt(Math.random() * 100, 10));
+
+  //mqtt connecton options including the mqtt broker subscriptions
+  client.connect({
+    onSuccess: function () {
+      console.log("mqtt connected");
+      client.subscribe("esp/hasil");
+      client.subscribe("esp/hasilmac");
+      client.onMessageArrived = onMessageArrived;
+      client.onConnectionLost = onConnectionLost;
+    },
+    onFailure: function (message) {
+      console.log("Connection failed, ERROR: " + message.errorMessage);
+    //   window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
+    }
+  });
+  
+  function onConnectionLost(responseObject) {
+    console.log("connection lost: " + responseObject.errorMessage);
+    window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
+  };
+
+  function onMessageArrived(message) {
+    console.log(message.destinationName, '',message.payloadString);
+  }
+
+  function publishToMQTT_Fuzzy(message, message1) {
+            message = new Paho.MQTT.Message(message);
+            message1 = new Paho.MQTT.Message(message1);
+            message.destinationName = "esp/hasil";
+            message1.destinationName="esp/hasilmac";
+            client.send(message);
+            client.send(message1);
+        }
+
+    $(document).ready(function(){
+        setInterval(function() {
+            //     publishToMQTT_Fuzzy(document.getElementById("h").innerHTML);
+            // console.log("sess"+publishToMQTT_Fuzzy(sessionStorage.getItem('hasil'[0]));
+
+            var data = <?php echo json_encode($_SESSION["hitung"]);?>;
+            cekhasil = <?php echo json_encode($cekhasil);?>;
+            cekmac = <?php echo json_encode($cekmac);?>;
+
+
+            var i = 0;
+            publishToMQTT_Fuzzy(cekhasil[i], cekmac[i]);
+            // setTimeout(function(){
+            //     $('#delete').load("deleteMon.php");
+            //         console.log("data");
+            //     },5000);
+            // i++;
+            // setTimeout(function() {
+            // if(i<data){
+                
+            //     publishToMQTT_Fuzzy(cekhasil[i], cekmac[i]);
+                
+
+            // }
+            // }, 3000);
+            // if(i== data){
+                setTimeout(function(){
+                $('#delete').load("deleteMon.php");
+                    console.log("data");
+                },5000);
+                // setTimeout(function(){
+                // $('#refresh').load("metode.php");
+                //     console.log("data");
+                // },20000);
+            // }
+                
+                // publishToMQTT_Mac(cekmac[i]);
+
+                    // console.log("ss");
+                
+                    
+                    
+                // document.getElementById("h").innerHTML  = '<span>' +hasil +' </span>';
+                    
+                
+            
+            }, 1000*60);
+    })
+
+</script>
+
 <?php
     // date_default_timezone_set('Asia/Jakarta');
     // session_start();
@@ -592,92 +681,3 @@
 
 ?>
 
-
-<script type="text/javascript">
-console.log("bb");
-   const MQTTbroker = 'localhost';
-   client = new Paho.MQTT.Client(MQTTbroker, 9095, "/ws", "clientsawi" + parseInt(Math.random() * 100, 10));
-
-  //mqtt connecton options including the mqtt broker subscriptions
-  client.connect({
-    onSuccess: function () {
-      console.log("mqtt connected");
-      client.subscribe("esp/hasil");
-      client.subscribe("esp/hasilmac");
-      client.onMessageArrived = onMessageArrived;
-      client.onConnectionLost = onConnectionLost;
-    },
-    onFailure: function (message) {
-      console.log("Connection failed, ERROR: " + message.errorMessage);
-    //   window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
-    }
-  });
-  
-  function onConnectionLost(responseObject) {
-    console.log("connection lost: " + responseObject.errorMessage);
-    window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
-  };
-
-  function onMessageArrived(message) {
-    console.log(message.destinationName, '',message.payloadString);
-  }
-
-  function publishToMQTT_Fuzzy(message, message1) {
-            message = new Paho.MQTT.Message(message);
-            message1 = new Paho.MQTT.Message(message1);
-            message.destinationName = "esp/hasil";
-            message1.destinationName="esp/hasilmac";
-            client.send(message);
-            client.send(message1);
-        }
-
-    $(document).ready(function(){
-        setInterval(function() {
-            //     publishToMQTT_Fuzzy(document.getElementById("h").innerHTML);
-            // console.log("sess"+publishToMQTT_Fuzzy(sessionStorage.getItem('hasil'[0]));
-
-            var data = <?php echo json_encode($_SESSION["hitung"]);?>;
-            cekhasil = <?php echo json_encode($cekhasil);?>;
-            cekmac = <?php echo json_encode($cekmac);?>;
-
-
-            var i = 0;
-            publishToMQTT_Fuzzy(cekhasil[i], cekmac[i]);
-            // setTimeout(function(){
-            //     $('#delete').load("deleteMon.php");
-            //         console.log("data");
-            //     },5000);
-            // i++;
-            // setTimeout(function() {
-            // if(i<data){
-                
-            //     publishToMQTT_Fuzzy(cekhasil[i], cekmac[i]);
-                
-
-            // }
-            // }, 3000);
-            // if(i== data){
-                setTimeout(function(){
-                $('#delete').load("deleteMon.php");
-                    console.log("data");
-                },5000);
-                // setTimeout(function(){
-                // $('#refresh').load("metode.php");
-                //     console.log("data");
-                // },20000);
-            // }
-                
-                // publishToMQTT_Mac(cekmac[i]);
-
-                    // console.log("ss");
-                
-                    
-                    
-                // document.getElementById("h").innerHTML  = '<span>' +hasil +' </span>';
-                    
-                
-            
-            }, 1000*60);
-    })
-
-</script>
