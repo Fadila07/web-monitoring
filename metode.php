@@ -7,7 +7,7 @@
 
 <script type="text/javascript">
 console.log("bb");
-   const MQTTbroker = 'localhost';
+   const MQTTbroker = '44.195.141.13';
    client = new Paho.MQTT.Client(MQTTbroker, 9095, "clientsawi" + parseInt(Math.random() * 100, 10));
 
   //mqtt connecton options including the mqtt broker subscriptions
