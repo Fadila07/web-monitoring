@@ -585,6 +585,7 @@
             $temp_2 = $temp_2 + $alfa[$i];
         }
         $hasil = $temp_1 / $temp_2;
+        echo "cek";
         return $hasil;
     }
 
@@ -592,7 +593,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-const MQTTbroker = '44.195.141.13';
+const MQTTbroker = 'localhost';
    client = new Paho.MQTT.Client(MQTTbroker, 9095, "/ws", "clientsawi" + parseInt(Math.random() * 100, 10));
 
   //mqtt connecton options including the mqtt broker subscriptions
