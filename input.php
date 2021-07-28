@@ -7,7 +7,7 @@ session_start();
 
     $nama_perangkat = $_POST['nama_perangkat'];
     $mac = $_POST['mac_perangkat'];
-    $query = "INSERT INTO terkoneksi VALUES ('', '$nama_perangkat', '$mac')";
+    $query = "INSERT INTO terkoneksi(nama_perangkat, mac_perangkat) VALUES ('$nama_perangkat', '$mac')";
     $cek = mysqli_num_rows(mysqli_query($conn,"SELECT mac_perangkat FROM terkoneksi WHERE mac_perangkat = '$mac' OR nama_perangkat = '$nama_perangkat'"));
 
     // if(isset($_POST['submit'])){
