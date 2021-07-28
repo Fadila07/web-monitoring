@@ -123,7 +123,7 @@ console.log("bb");
 
     include 'koneksi.php';
 
-    echo $hasil;
+    // echo $hasil;
 
     $query = mysqli_query($conn, "SELECT AVG(temperature) AS temperature, AVG(humidity) AS humidity, AVG(moisture) AS moisture, 
     mac_perangkat FROM monitoring GROUP BY mac_perangkat") or die(mysqli_error());
@@ -675,7 +675,7 @@ console.log("bb");
             $temp_2 = $temp_2 + $alfa[$i];
         }
         $hasil = $temp_1 / $temp_2;
-        echo "cek";
+        // echo "cek";
         return $hasil;
     }
 
