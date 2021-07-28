@@ -43,15 +43,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-        const Broker = '54.226.6.226';
+        const Broker = '44.195.141.13';
         var messagePayloadTemperature = 0;
         var messagePayloadHumidity = 0;
         var messagePayloadMoisture = 0;
         var messagePayloadMac = 0;
        
-        // var client = new Paho.MQTT.Client(MQTTbroker, MQTTport,
-        //             "myclientid_" + parseInt(Math.random() * 100, 10));
-        var client = new Paho.MQTT.Client(Broker, 9095, "myclientid_");
+        var client = new Paho.MQTT.Client(Broker, 9095,
+                    "myclientid_" + parseInt(Math.random() * 100, 10));
+        // var client = new Paho.MQTT.Client(Broker, 9095, "myclientid_");
         // var cl = new Paho.MQTT.Client(MQTTbroker, 1883, "myclientid_");
         // client.onMessageArrived = onMessageArrived;
         // client.onConnectionLost = onConnectionLost;
@@ -60,7 +60,7 @@
         //mqtt connecton options including the mqtt broker subscriptions
         client.connect({
             onSuccess: function () {
-                console.log("mqtt connected");
+                console.log("mqtt connected js.php");
                 client.subscribe("sawi/iot/temperature");
                 client.subscribe("sawi/iot/humidity");
                 client.subscribe("sawi/iot/moisture");

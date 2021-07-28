@@ -13,7 +13,7 @@ console.log("bb");
   //mqtt connecton options including the mqtt broker subscriptions
   client.connect({
     onSuccess: function () {
-      console.log("mqtt connected");
+      console.log("mqtt connected metode.php");
       client.subscribe("esp/hasil");
       client.subscribe("esp/hasilmac");
       client.onMessageArrived = onMessageArrived;
