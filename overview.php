@@ -24,7 +24,7 @@ error_reporting(0);
 <html>
     <head>
         <?php include "header.php";?>
-        <?php include "metode.php";?>
+        
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
     
@@ -32,6 +32,7 @@ error_reporting(0);
         <?php include "sidebar.php";?>
         <?php include "dashboard.php";?>
         <?php include "footer.php";?>
+        <?php include "metode.php";?>
         <?php include "js.php";?>
         
         
