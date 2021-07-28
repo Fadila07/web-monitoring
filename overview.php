@@ -32,8 +32,9 @@ error_reporting(0);
         <?php include "sidebar.php";?>
         <?php include "dashboard.php";?>
         <?php include "footer.php";?>
-        <?php include "metode.php";?>
+        
         <?php include "js.php";?>
+        <?php include "metode.php";?>
         
         
     </body>
