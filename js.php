@@ -2,7 +2,6 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@1.8.0"></script>
-    
 <script>
     $("input[data-bootstrap-switch]").each(function(){
       $(this).bootstrapSwitch('state', $(this).prop('checked'));
@@ -42,7 +41,7 @@
     setInterval(showTime, 500);         
 </script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
 <script type="text/javascript">
         const Broker = '44.195.141.13';
         var messagePayloadTemperature = 0;
